@@ -21,7 +21,7 @@ def shadeRegion(coords, bound):
 
     color = ''
     if bound == "up":
-        color = (1 ,1 ,1)
+        color = (255 ,255 ,255)
         bound = 'ub'
     else:
         color = (0, 0 , 0)
@@ -35,7 +35,8 @@ def shadeRegion(coords, bound):
             resized[j][i] = color
         j += 1
     filename = 'generated_properties/dave_small_' + bound + '0.npy'
-    x = np.moveaxis(resized, -1, 0)
+    x = cv.cvtColor(resized, cv.COLOR_BGR2RGB)
+    x = np.moveaxis(x, -1, 0)
     np.save(filename, x)
     cv.imshow("resized image", resized)
 
