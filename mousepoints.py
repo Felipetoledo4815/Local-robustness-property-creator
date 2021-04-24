@@ -21,7 +21,7 @@ def shadeRegion(coords, bound):
 
     color = ''
     if bound == "up":
-        color = (1 ,1 ,1)
+        color = (255 ,255 ,255)
         bound = 'ub'
     else:
         color = (0, 0 , 0)
@@ -46,16 +46,17 @@ def mousePoints(event, x, y, flags, params):
         global counter
         counter += 1
         global coords
-        if(counter <= 4):
-            coords.append((x, y))
-        else:
-            shadeRegion(coords=coords, bound='low')
-            shadeRegion(coords=coords, bound='up')
+        coords.append((x, y))
+
+
 
 
 
 def main():
     global resized
+    global coords
+
+
     img = cv.imread('original_images/san_mateo.jpg')
     resized = cv.resize(img, dsize=(100, 100))
     print(resized.shape)
@@ -63,8 +64,13 @@ def main():
     x = np.moveaxis(x, -1, 0)
     np.save('generated_properties/dave_small_orig_img0.npy', x)
     cv.imshow("resized image", resized)
-    cv.setMouseCallback("resized image", mousePoints)
+    while(len(coords) < 4):
+        cv.waitKey(1)
+        cv.setMouseCallback("resized image", mousePoints)
+    shadeRegion(coords=coords, bound='low')
+    shadeRegion(coords=coords, bound='up')
     cv.waitKey(0)
+    cv.destroyAllWindows()
 
 if __name__ == "__main__":
     main()
