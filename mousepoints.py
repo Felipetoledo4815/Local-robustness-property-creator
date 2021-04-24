@@ -1,15 +1,67 @@
-import cv2
+import cv2 as cv
 import numpy as np
 
+
+global counter
+counter = 0
+
+global coords 
+coords = []
+
+global resized
+
+def shadeRegion(coords, bound):
+    print(coords)
+    print(resized.shape)
+    top_left = coords[0]
+    top_right = coords[1]
+    lower_left = coords[2]
+    lower_right = coords[3]
+
+    color = ''
+    if bound == "up":
+        color = (255 ,255 ,255)
+        bound = 'ub'
+    else:
+        color = (0, 0 , 0)
+        bound = 'lb'
+
+    max_j  = lower_left[1]
+    j = top_left[1]
+    while j < max_j:
+        for i in range(top_left[0], top_right[0]):
+            resized[j][i] = color
+        j += 1
+    filename = 'output/dave_small_' + bound + '.npy'
+    x = np.moveaxis(resized, -1, 0)
+    np.save(filename, x)
+    # cv.imshow("resized image", resized)
+
+
+
 def mousePoints(event, x, y, flags, params):
-    global counter
-    if event == cv2.EVENT_LBUTTONDOWN:
-        print(x, y)
+    if event == cv.EVENT_LBUTTONDOWN:
+        global counter
+        counter += 1
+        global coords
+        if(counter <= 4):
+            coords.append((x, y))
+        else:
+            shadeRegion(coords=coords, bound='low')
+            shadeRegion(coords=coords, bound='up')
 
-img = cv2.imread('imgs/speed_limit.jpeg')
 
-cv2.imshow("original image", img)
 
-cv2.setMouseCallback("original image", mousePoints)
+def main():
+    global resized
+    img = cv.imread('imgs/san_mateo.jpg')
+    resized = cv.resize(img, (100, 100))
+    print(resized.shape)
+    x = np.moveaxis(resized, -1, 0)
+    np.save('output/dave_small_orig_img.npy', x)
+    cv.imshow("resized image", resized)
+    cv.setMouseCallback("resized image", mousePoints)
+    cv.waitKey(0)
 
-cv2.waitKey(0)
+if __name__ == "__main__":
+    main()
