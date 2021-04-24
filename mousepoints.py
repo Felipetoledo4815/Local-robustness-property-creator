@@ -6,7 +6,8 @@ def mousePoints(event, x, y, flags, params):
     if event == cv2.EVENT_LBUTTONDOWN:
         print(x, y)
 
-img = cv2.imread('imgs/speed_limit.jpeg')
+# resize to 100 x 100
+img = cv2.imread('imgs/01. san_mateo.jpg')
 
 cv2.imshow("original image", img)
 
