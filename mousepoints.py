@@ -1,5 +1,6 @@
 import cv2 as cv
 import numpy as np
+import matplotlib.image as mpimg
 
 
 global counter
@@ -33,7 +34,7 @@ def shadeRegion(coords, bound):
         for i in range(top_left[0], top_right[0]):
             resized[j][i] = color
         j += 1
-    filename = 'generated_output/dave_small_' + bound + '.npy'
+    filename = 'generated_properties/dave_small_' + bound + '0.npy'
     x = np.moveaxis(resized, -1, 0)
     np.save(filename, x)
     cv.imshow("resized image", resized)
@@ -49,17 +50,18 @@ def mousePoints(event, x, y, flags, params):
             coords.append((x, y))
         else:
             shadeRegion(coords=coords, bound='low')
-            # shadeRegion(coords=coords, bound='up')
+            shadeRegion(coords=coords, bound='up')
 
 
 
 def main():
     global resized
-    img = cv.imread('imgs/san_mateo.jpg')/255
-    resized = cv.resize(img, (100, 100))
+    img = cv.imread('original_images/san_mateo.jpg')
+    resized = cv.resize(img, dsize=(100, 100))
     print(resized.shape)
-    x = np.moveaxis(resized, -1, 0)
-    np.save('generated_output/dave_small_orig_img.npy', x)
+    x = cv.cvtColor(resized, cv.COLOR_BGR2RGB)
+    x = np.moveaxis(x, -1, 0)
+    np.save('generated_properties/dave_small_orig_img0.npy', x)
     cv.imshow("resized image", resized)
     cv.setMouseCallback("resized image", mousePoints)
     cv.waitKey(0)
