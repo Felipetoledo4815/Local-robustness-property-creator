@@ -65,14 +65,14 @@ def mousePoints(event, x, y, flags, params):
         counter += 1
         coords.append((x, y))
         if counter == 2:
-            resized = cv.line(resized,coords[0],coords[1],(0,0,0),1)
+            resized = cv.line(resized,coords[0],coords[1],(0,0,0),2)
             cv.imshow("resized image", resized)
         if counter == 3:
-            resized = cv.line(resized,coords[1],coords[2],(0,0,0),1)
+            resized = cv.line(resized,coords[1],coords[2],(0,0,0),2)
             cv.imshow("resized image", resized)
         if counter == 4:
-            resized = cv.line(resized,coords[2],coords[3],(0,0,0),1)
-            resized = cv.line(resized,coords[3],coords[0],(0,0,0),1)
+            resized = cv.line(resized,coords[2],coords[3],(0,0,0),2)
+            resized = cv.line(resized,coords[3],coords[0],(0,0,0),2)
             cv.imshow("resized image", resized)
 
 
@@ -100,8 +100,12 @@ def main():
         cv.setMouseCallback("resized image", mousePoints)
     shadeRegion(coords=coords, bound='low')
     shadeRegion(coords=coords, bound='up')
-    cv.waitKey(0)
+    k = 0
+    while (k != 27 and k != 113):
+        print(k)
+        k = cv.waitKey(0)
     cv.destroyAllWindows()
+            
 
 if __name__ == "__main__":
     main()
