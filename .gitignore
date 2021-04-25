@@ -132,3 +132,4 @@ dmypy.json
 **/.DS_Store
 
 generated_output/**
+generated_properties/*

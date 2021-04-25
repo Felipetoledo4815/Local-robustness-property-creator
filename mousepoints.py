@@ -23,10 +23,10 @@ def shadeRegion(coords, bound):
     
     color = 0
     if bound == "up":
-        color = 255
+        color = (255, 255, 255)
         bound = 'ub'
     else:
-        color = 0
+        color = (0, 0, 0)
         bound = 'lb'
 
     pts = np.array([top_left,top_right,lower_right,lower_left])
