@@ -38,7 +38,9 @@ def shadeRegion(coords, bound):
     filename = 'generated_properties/dave_small_' + bound + '0.npy'
     x = np.moveaxis(x, -1, 0)
     np.save(filename, x)
+    cv.namedWindow("final image " + bound,cv.WINDOW_NORMAL)
     cv.imshow("final image " + bound, resized)
+    cv.resizeWindow("final image " + bound, 500, 500)
 
     # top left clockwise -> selection
     # max_j  = lower_left[1]
@@ -89,7 +91,10 @@ def main():
     x = cv.cvtColor(resized, cv.COLOR_BGR2RGB)
     x = np.moveaxis(x, -1, 0)
     np.save('generated_properties/dave_small_orig_img0.npy', x)
+    cv.namedWindow('resized image',cv.WINDOW_NORMAL)
+    
     cv.imshow("resized image", resized)
+    cv.resizeWindow('resized image', 500, 500)
     while(len(coords) < 4):
         cv.waitKey(1)
         cv.setMouseCallback("resized image", mousePoints)
