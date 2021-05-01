@@ -5,11 +5,11 @@ def create_property(output_dir, prop_name):
     if output_dir[-1] != '/':
         output_dir = output_dir + '/'
 
-    img = output_dir + 'dave_small_orig_img' + prop_name + '.npy'
-    lb = output_dir + 'dave_small_lb' + prop_name + '.npy'
-    ub = output_dir + 'dave_small_ub' + prop_name + '.npy'
+    img = output_dir + 'orig_img' + prop_name + '.npy'
+    lb = output_dir + 'lb' + prop_name + '.npy'
+    ub = output_dir + 'ub' + prop_name + '.npy'
 
-    property_file = open(output_dir + 'dave_small_property' + prop_name + '.py', 'w')
+    property_file = open(output_dir + 'property' + prop_name + '.py', 'w')
 
     property_file.write(inspect.cleandoc(
     """
@@ -40,10 +40,10 @@ def create_property(output_dir, prop_name):
     property_file.close()
 
 
-def main():
-    output_dir = 'generated_properties/'
-    prop_name = '0'
-    create_property(output_dir, prop_name)
+def main(args):
+    # output_dir = 'generated_properties/'
+    # prop_name = '0'
+    create_property(args.output, args.name)
 
 
 if __name__ == "__main__":

@@ -11,7 +11,7 @@ coords = []
 
 global resized
 
-def shadeRegion(coords, bound):
+def shadeRegion(coords, bound, output, name):
     global resized 
 
     print(coords)
@@ -35,7 +35,8 @@ def shadeRegion(coords, bound):
     # cv.imshow("poly lines", resized)
 
     x = cv.cvtColor(resized, cv.COLOR_BGR2RGB)
-    filename = 'generated_properties/dave_small_' + bound + '0.npy'
+    # filename = 'generated_properties/dave_small_' + bound + '0.npy'
+    filename = output + bound + name +'.npy'
     x = np.moveaxis(x, -1, 0)
     np.save(filename, x)
     # cv.namedWindow("final image " + bound,cv.WINDOW_NORMAL)
@@ -65,32 +66,34 @@ def mousePoints(event, x, y, flags, params):
         counter += 1
         coords.append((x, y))
         if counter == 2:
-            resized = cv.line(resized,coords[0],coords[1],(0,0,0),2)
+            resized = cv.line(resized,coords[0],coords[1],(0,0,255),1)
             cv.imshow("resized image", resized)
         if counter == 3:
-            resized = cv.line(resized,coords[1],coords[2],(0,0,0),2)
+            resized = cv.line(resized,coords[1],coords[2],(0,0,255),1)
             cv.imshow("resized image", resized)
         if counter == 4:
-            resized = cv.line(resized,coords[2],coords[3],(0,0,0),2)
-            resized = cv.line(resized,coords[3],coords[0],(0,0,0),2)
+            resized = cv.line(resized,coords[2],coords[3],(0,0,255),1)
+            resized = cv.line(resized,coords[3],coords[0],(0,0,255),1)
             cv.imshow("resized image", resized)
+    if event == cv.EVENT_MOUSEMOVE and 0 < len(coords) and len(coords) < 4:
+        resized_tmp = resized.copy()
+        resized_tmp = cv.line(resized_tmp,coords[counter-1],(x,y),(0,0,255),1)
+        cv.imshow("resized image", resized_tmp)
 
 
+def main(args):
 
-
-
-
-def main():
     global resized
     global coords
 
-
-    img = cv.imread('original_images/san_mateo.jpg')
+    # img = cv.imread('original_images/san_mateo.jpg')
+    img = cv.imread(args.img)
     resized = cv.resize(img, dsize=(100, 100))
     print(resized.shape)
     x = cv.cvtColor(resized, cv.COLOR_BGR2RGB)
     x = np.moveaxis(x, -1, 0)
-    np.save('generated_properties/dave_small_orig_img0.npy', x)
+    # np.save('generated_properties/dave_small_orig_img0.npy', x)
+    np.save(args.output + 'orig_img' + args.name + '.npy', x)
     cv.namedWindow('resized image',cv.WINDOW_NORMAL)
     
     cv.imshow("resized image", resized)
@@ -98,8 +101,8 @@ def main():
     while(len(coords) < 4):
         cv.waitKey(1)
         cv.setMouseCallback("resized image", mousePoints)
-    shadeRegion(coords=coords, bound='low')
-    shadeRegion(coords=coords, bound='up')
+    shadeRegion(coords=coords, bound='low', output=args.output, name=args.name)
+    shadeRegion(coords=coords, bound='up', output=args.output, name=args.name)
     k = 0
     while (k != 27 and k != 113):
         print(k)
