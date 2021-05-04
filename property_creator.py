@@ -24,7 +24,7 @@ def create_property(output_dir, prop_name):
         lb = np.load("{}") / 255.0
         ub = np.load("{}") / 255.0
 
-        gamma = Parameter("gamma", type=float, default=2.0) * np.pi / 180
+        gamma = Parameter("gamma", type=float, default=15.0) * np.pi / 180
         output = N[input_layer:](x)
         gamma_lb = np.tan(max(-np.pi / 2, (output - gamma) / 2))
         gamma_ub = np.tan(min(np.pi / 2, (output + gamma) / 2))
