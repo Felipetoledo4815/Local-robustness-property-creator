@@ -1,0 +1,41 @@
+Verifying property:
+Forall(x_0, (((x_0 <= [[[0.067 0.063 ... 0.2  0.039] [0.047 0.024 ... 0.09 0.075] ... [0.443 0.443 ... 0.122 0.125] [0.459 0.455 ... 0.125 0.125]] [[0.008 0.004 ... 0.18 0.039] [0.031 0.008 ... 0.09 0.075] ... [0.463 0.463 ... 0.165 0.169] [0.459 0.455 ... 0.169 0.169]] [[0.004 0.004 ... 0.165 0.039] [0.055 0.031 ... 0.082 0.082] ... [0.486 0.486 ... 0.235 0.239] [0.49 0.486 ... 0.239 0.239]]]) & ([[[0.067 0.063 ... 0.2  0.039] [0.047 0.024 ... 0.09 0.075] ... [0.443 0.443 ... 0.122 0.125] [0.459 0.455 ... 0.125 0.125]] [[0.008 0.004 ... 0.18 0.039] [0.031 0.008 ... 0.09 0.075] ... [0.463 0.463 ... 0.165 0.169] [0.459 0.455 ... 0.169 0.169]] [[0.004 0.004 ... 0.165 0.039] [0.055 0.031 ... 0.082 0.082] ... [0.486 0.486 ... 0.235 0.239] [0.49 0.486 ... 0.239 0.239]]] <= x_0)) ==> ((numpy.tan(max(-1.5707963267948966, ((N[0:]([[[[0.067 0.063 ... 0.2  0.039]  [0.047 0.024 ... 0.09 0.075]  ...  [0.443 0.443 ... 0.122 0.125]  [0.459 0.455 ... 0.125 0.125]] [[0.008 0.004 ... 0.18 0.039]  [0.031 0.008 ... 0.09 0.075]  ...  [0.463 0.463 ... 0.165 0.169]  [0.459 0.455 ... 0.169 0.169]] [[0.004 0.004 ... 0.165 0.039]  [0.055 0.031 ... 0.082 0.082]  ...  [0.486 0.486 ... 0.235 0.239]  [0.49 0.486 ... 0.239 0.239]]]]) - ((3.141592653589793 * 45.0) / 180)) / 2))) < N[0:-2](x_0)) & (N[0:-2](x_0) < numpy.tan(min(1.5707963267948966, ((N[0:]([[[[0.067 0.063 ... 0.2  0.039]  [0.047 0.024 ... 0.09 0.075]  ...  [0.443 0.443 ... 0.122 0.125]  [0.459 0.455 ... 0.125 0.125]] [[0.008 0.004 ... 0.18 0.039]  [0.031 0.008 ... 0.09 0.075]  ...  [0.463 0.463 ... 0.165 0.169]  [0.459 0.455 ... 0.169 0.169]] [[0.004 0.004 ... 0.165 0.039]  [0.055 0.031 ... 0.082 0.082]  ...  [0.486 0.486 ... 0.235 0.239]  [0.49 0.486 ... 0.239 0.239]]]]) + ((3.141592653589793 * 45.0) / 180)) / 2)))))))
+
+Verifying Networks:
+N:
+Input_0                         : Input([  1   3 100 100], dtype=float32)
+Conv_0                          : Conv(Input_0, kernel_shape=[5, 5], strides=[5, 5], pads=[0, 0, 0, 0])
+Relu_0                          : Relu(Conv_0)
+Conv_1                          : Conv(Relu_0, kernel_shape=[5, 5], strides=[5, 5], pads=[0, 0, 0, 0])
+Relu_1                          : Relu(Conv_1)
+Transpose_0                     : Transpose(Relu_1, permutation=[0 2 3 1])
+Flatten_0                       : Flatten(Transpose_0, axis=1)
+Gemm_0                          : Gemm(Flatten_0, ndarray(shape=(100, 576)), ndarray(shape=(100,)))
+Relu_2                          : Relu(Gemm_0)
+Gemm_1                          : Gemm(Relu_2, ndarray(shape=(1, 100)), [-0.00807803])
+Atan_0                          : Atan(Gemm_1)
+Mul_0                           : Mul(Atan_0, 2.0)
+
+Traceback (most recent call last):
+  File "/bigtemp/ft8bn/DNNV/dnnv/verifiers/common/executors/commandline.py", line 34, in run
+    ready, _, _ = select.select([stream], [], [], 0)
+KeyboardInterrupt
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/net/bigtemp/ft8bn/DNNV/.venv/bin/dnnv", line 8, in <module>
+    sys.exit(_main())
+  File "/bigtemp/ft8bn/DNNV/dnnv/__main__.py", line 80, in _main
+    return exit(main(*cli.parse_args()))
+  File "/bigtemp/ft8bn/DNNV/dnnv/__main__.py", line 58, in main
+    result, cex = verifier.verify(phi, **params)
+  File "/bigtemp/ft8bn/DNNV/dnnv/verifiers/common/base.py", line 82, in verify
+    return cls(phi, **kwargs).run()
+  File "/bigtemp/ft8bn/DNNV/dnnv/verifiers/common/base.py", line 112, in run
+    subproperty_result, cex = self.check(subproperty)
+  File "/bigtemp/ft8bn/DNNV/dnnv/verifiers/common/base.py", line 88, in check
+    *executor_inputs, verifier_error=self.verifier_error
+  File "/bigtemp/ft8bn/DNNV/dnnv/verifiers/common/executors/commandline.py", line 34, in run
+    ready, _, _ = select.select([stream], [], [], 0)
+KeyboardInterrupt

@@ -132,3 +132,8 @@ dmypy.json
 **/.DS_Store
 
 .vscode
+counter_examples/
+verify_s.sh
+falsify_s.sh
+batch_v.sh
+batch_f.sh

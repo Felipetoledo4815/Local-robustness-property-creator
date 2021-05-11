@@ -1,0 +1,91 @@
+DEBUG    2021-05-10 19:37:03,731 (dnnv) Reading property generated_properties/property7.py
+Verifying property:
+Forall(x_0, (((x_0 <= [[[0.522 0.341 ... 1.  1.  ] [0.353 0.369 ... 1.  1.  ] ... [0.145 0.173 ... 0.2  0.165] [0.153 0.157 ... 0.212 0.212]] [[0.682 0.392 ... 1.  1.  ] [0.392 0.408 ... 1.  1.  ] ... [0.149 0.176 ... 0.212 0.176] [0.157 0.161 ... 0.224 0.224]] [[0.745 0.424 ... 1.  1.  ] [0.392 0.404 ... 1.  1.  ] ... [0.169 0.196 ... 0.239 0.204] [0.176 0.18 ... 0.251 0.251]]]) & (0 <= x_0) & (x_0 <= 1) & ([[[0.522 0.341 ... 1.  1.  ] [0.353 0.369 ... 1.  1.  ] ... [0.145 0.173 ... 0.2  0.165] [0.153 0.157 ... 0.212 0.212]] [[0.682 0.392 ... 1.  1.  ] [0.392 0.408 ... 1.  1.  ] ... [0.149 0.176 ... 0.212 0.176] [0.157 0.161 ... 0.224 0.224]] [[0.745 0.424 ... 1.  1.  ] [0.392 0.404 ... 1.  1.  ] ... [0.169 0.196 ... 0.239 0.204] [0.176 0.18 ... 0.251 0.251]]] <= x_0)) ==> ((N[0:-2](x_0) < numpy.tan(min(1.5707963267948966, ((N[0:]([[[[0.522 0.341 ... 1.  1.  ]  [0.353 0.369 ... 1.  1.  ]  ...  [0.145 0.173 ... 0.2  0.165]  [0.153 0.157 ... 0.212 0.212]] [[0.682 0.392 ... 1.  1.  ]  [0.392 0.408 ... 1.  1.  ]  ...  [0.149 0.176 ... 0.212 0.176]  [0.157 0.161 ... 0.224 0.224]] [[0.745 0.424 ... 1.  1.  ]  [0.392 0.404 ... 1.  1.  ]  ...  [0.169 0.196 ... 0.239 0.204]  [0.176 0.18 ... 0.251 0.251]]]]) + ((3.141592653589793 * 15.0) / 180)) / 2)))) & (numpy.tan(max(-1.5707963267948966, ((N[0:]([[[[0.522 0.341 ... 1.  1.  ]  [0.353 0.369 ... 1.  1.  ]  ...  [0.145 0.173 ... 0.2  0.165]  [0.153 0.157 ... 0.212 0.212]] [[0.682 0.392 ... 1.  1.  ]  [0.392 0.408 ... 1.  1.  ]  ...  [0.149 0.176 ... 0.212 0.176]  [0.157 0.161 ... 0.224 0.224]] [[0.745 0.424 ... 1.  1.  ]  [0.392 0.404 ... 1.  1.  ]  ...  [0.169 0.196 ... 0.239 0.204]  [0.176 0.18 ... 0.251 0.251]]]]) - ((3.141592653589793 * 15.0) / 180)) / 2))) < N[0:-2](x_0)))))
+
+Verifying Networks:
+N:
+DEBUG    2021-05-10 19:37:03,756 (dnnv) Parsing network (onnx/dave_small.onnx)
+DEBUG    2021-05-10 19:37:03,758 (dnnv.nn.parser.onnx)   1: Conv
+DEBUG    2021-05-10 19:37:03,759 (dnnv.nn.parser.onnx)   2: Relu
+DEBUG    2021-05-10 19:37:03,759 (dnnv.nn.parser.onnx)   3: Conv
+DEBUG    2021-05-10 19:37:03,759 (dnnv.nn.parser.onnx)   4: Relu
+DEBUG    2021-05-10 19:37:03,759 (dnnv.nn.parser.onnx)   5: Transpose
+DEBUG    2021-05-10 19:37:03,759 (dnnv.nn.parser.onnx)   6: Flatten
+DEBUG    2021-05-10 19:37:03,759 (dnnv.nn.parser.onnx)   7: Gemm
+DEBUG    2021-05-10 19:37:03,759 (dnnv.nn.parser.onnx)   8: Relu
+DEBUG    2021-05-10 19:37:03,759 (dnnv.nn.parser.onnx)   9: Gemm
+DEBUG    2021-05-10 19:37:03,759 (dnnv.nn.parser.onnx)  10: Atan
+DEBUG    2021-05-10 19:37:03,759 (dnnv.nn.parser.onnx)  11: Mul
+Input_0                         : Input([  1   3 100 100], dtype=float32)
+Conv_0                          : Conv(Input_0, kernel_shape=[5, 5], strides=[5, 5], pads=[0, 0, 0, 0])
+Relu_0                          : Relu(Conv_0)
+Conv_1                          : Conv(Relu_0, kernel_shape=[5, 5], strides=[5, 5], pads=[0, 0, 0, 0])
+Relu_1                          : Relu(Conv_1)
+Transpose_0                     : Transpose(Relu_1, permutation=[0 2 3 1])
+Flatten_0                       : Flatten(Transpose_0, axis=1)
+Gemm_0                          : Gemm(Flatten_0, ndarray(shape=(100, 576)), ndarray(shape=(100,)))
+Relu_2                          : Relu(Gemm_0)
+Gemm_1                          : Gemm(Relu_2, ndarray(shape=(1, 100)), [-0.00807803])
+Atan_0                          : Atan(Gemm_1)
+Mul_0                           : Mul(Atan_0, 2.0)
+
+DEBUG    2021-05-10 19:37:03,930 (dnnv.verifiers.common.reductions.iopolytope) DNF: (((((-1 * N[0:-2](x_0))) <= [[-0.058]]) & (((1 * x_0)) <= 1) & (((-1 * x_0)) <= 0) & (((-1 * x_0)) <= [[[-0.522 -0.341 ... -1.  -1.  ] [-0.353 -0.369 ... -1.  -1.  ] ... [-0.145 -0.173 ... -0.2  -0.165] [-0.153 -0.157 ... -0.212 -0.212]] [[-0.682 -0.392 ... -1.  -1.  ] [-0.392 -0.408 ... -1.  -1.  ] ... [-0.149 -0.176 ... -0.212 -0.176] [-0.157 -0.161 ... -0.224 -0.224]] [[-0.745 -0.424 ... -1.  -1.  ] [-0.392 -0.404 ... -1.  -1.  ] ... [-0.169 -0.196 ... -0.239 -0.204] [-0.176 -0.18 ... -0.251 -0.251]]]) & (((1 * x_0)) <= [[[0.522 0.341 ... 1.  1.  ] [0.353 0.369 ... 1.  1.  ] ... [0.145 0.173 ... 0.2  0.165] [0.153 0.157 ... 0.212 0.212]] [[0.682 0.392 ... 1.  1.  ] [0.392 0.408 ... 1.  1.  ] ... [0.149 0.176 ... 0.212 0.176] [0.157 0.161 ... 0.224 0.224]] [[0.745 0.424 ... 1.  1.  ] [0.392 0.404 ... 1.  1.  ] ... [0.169 0.196 ... 0.239 0.204] [0.176 0.18 ... 0.251 0.251]]])) | ((((1 * x_0)) <= 1) & (((-1 * x_0)) <= 0) & (((1 * N[0:-2](x_0))) <= [[-0.207]]) & (((-1 * x_0)) <= [[[-0.522 -0.341 ... -1.  -1.  ] [-0.353 -0.369 ... -1.  -1.  ] ... [-0.145 -0.173 ... -0.2  -0.165] [-0.153 -0.157 ... -0.212 -0.212]] [[-0.682 -0.392 ... -1.  -1.  ] [-0.392 -0.408 ... -1.  -1.  ] ... [-0.149 -0.176 ... -0.212 -0.176] [-0.157 -0.161 ... -0.224 -0.224]] [[-0.745 -0.424 ... -1.  -1.  ] [-0.392 -0.404 ... -1.  -1.  ] ... [-0.169 -0.196 ... -0.239 -0.204] [-0.176 -0.18 ... -0.251 -0.251]]]) & (((1 * x_0)) <= [[[0.522 0.341 ... 1.  1.  ] [0.353 0.369 ... 1.  1.  ] ... [0.145 0.173 ... 0.2  0.165] [0.153 0.157 ... 0.212 0.212]] [[0.682 0.392 ... 1.  1.  ] [0.392 0.408 ... 1.  1.  ] ... [0.149 0.176 ... 0.212 0.176] [0.157 0.161 ... 0.224 0.224]] [[0.745 0.424 ... 1.  1.  ] [0.392 0.404 ... 1.  1.  ] ... [0.169 0.196 ... 0.239 0.204] [0.176 0.18 ... 0.251 0.251]]])))
+INFO     2021-05-10 19:37:03,933 (dnnv.verifiers.common.reductions.iopolytope) CONJUNCTION: ((((-1 * N[0:-2](x_0))) <= [[-0.058]]) & (((1 * x_0)) <= 1) & (((-1 * x_0)) <= 0) & (((-1 * x_0)) <= [[[-0.522 -0.341 ... -1.  -1.  ] [-0.353 -0.369 ... -1.  -1.  ] ... [-0.145 -0.173 ... -0.2  -0.165] [-0.153 -0.157 ... -0.212 -0.212]] [[-0.682 -0.392 ... -1.  -1.  ] [-0.392 -0.408 ... -1.  -1.  ] ... [-0.149 -0.176 ... -0.212 -0.176] [-0.157 -0.161 ... -0.224 -0.224]] [[-0.745 -0.424 ... -1.  -1.  ] [-0.392 -0.404 ... -1.  -1.  ] ... [-0.169 -0.196 ... -0.239 -0.204] [-0.176 -0.18 ... -0.251 -0.251]]]) & (((1 * x_0)) <= [[[0.522 0.341 ... 1.  1.  ] [0.353 0.369 ... 1.  1.  ] ... [0.145 0.173 ... 0.2  0.165] [0.153 0.157 ... 0.212 0.212]] [[0.682 0.392 ... 1.  1.  ] [0.392 0.408 ... 1.  1.  ] ... [0.149 0.176 ... 0.212 0.176] [0.157 0.161 ... 0.224 0.224]] [[0.745 0.424 ... 1.  1.  ] [0.392 0.404 ... 1.  1.  ] ... [0.169 0.196 ... 0.239 0.204] [0.176 0.18 ... 0.251 0.251]]]))
+INFO     2021-05-10 19:37:16,909 (dnnv.verifiers.common.executors.commandline) EXECUTING: verinet.py /tmp/tmpywwesf04/tmpytbc5dhx.onnx /tmp/tmpywwesf04/tmp4zjnihqu.npy -o /tmp/tmpywwesf04/tmpnzqeo5sb.npy
+DEBUG    2021-05-10 19:37:18,421 (dnnv.verifiers.common.executors.commandline) [STDOUT]:2021-05-10 19:37:18,420 - src.data_loader.onnx_parser - WARNING - Node not recognised:
+DEBUG    2021-05-10 19:37:18,421 (dnnv.verifiers.common.executors.commandline) [STDERR]:WARNING:src.data_loader.onnx_parser:Node not recognised:
+DEBUG    2021-05-10 19:37:18,421 (dnnv.verifiers.common.executors.commandline) [STDOUT]:input: "14"
+DEBUG    2021-05-10 19:37:18,421 (dnnv.verifiers.common.executors.commandline) [STDOUT]:output: "15"
+DEBUG    2021-05-10 19:37:18,421 (dnnv.verifiers.common.executors.commandline) [STDOUT]:name: "Transpose_4"
+DEBUG    2021-05-10 19:37:18,421 (dnnv.verifiers.common.executors.commandline) [STDOUT]:op_type: "Transpose"
+DEBUG    2021-05-10 19:37:18,421 (dnnv.verifiers.common.executors.commandline) [STDOUT]:attribute {
+DEBUG    2021-05-10 19:37:18,421 (dnnv.verifiers.common.executors.commandline) [STDOUT]:name: "perm"
+DEBUG    2021-05-10 19:37:18,421 (dnnv.verifiers.common.executors.commandline) [STDOUT]:ints: 0
+DEBUG    2021-05-10 19:37:18,421 (dnnv.verifiers.common.executors.commandline) [STDOUT]:ints: 2
+DEBUG    2021-05-10 19:37:18,421 (dnnv.verifiers.common.executors.commandline) [STDOUT]:ints: 3
+DEBUG    2021-05-10 19:37:18,421 (dnnv.verifiers.common.executors.commandline) [STDOUT]:ints: 1
+DEBUG    2021-05-10 19:37:18,421 (dnnv.verifiers.common.executors.commandline) [STDOUT]:type: INTS
+DEBUG    2021-05-10 19:37:18,421 (dnnv.verifiers.common.executors.commandline) [STDOUT]:}
+DEBUG    2021-05-10 19:37:18,421 (dnnv.verifiers.common.executors.commandline) [STDOUT]:
+DEBUG    2021-05-10 19:37:18,421 (dnnv.verifiers.common.executors.commandline) [STDOUT]:2021-05-10 19:37:18,420 - src.data_loader.onnx_parser - INFO - Skipped node of type: Flatten
+DEBUG    2021-05-10 19:37:25,363 (dnnv.verifiers.common.executors.commandline) [STDOUT]:Using license file /u/ft8bn/gurobi_license/cortado01/gurobi.lic
+DEBUG    2021-05-10 19:37:25,364 (dnnv.verifiers.common.executors.commandline) [STDERR]:input: "14"
+DEBUG    2021-05-10 19:37:25,364 (dnnv.verifiers.common.executors.commandline) [STDERR]:output: "15"
+DEBUG    2021-05-10 19:37:25,364 (dnnv.verifiers.common.executors.commandline) [STDERR]:name: "Transpose_4"
+DEBUG    2021-05-10 19:37:25,364 (dnnv.verifiers.common.executors.commandline) [STDERR]:op_type: "Transpose"
+DEBUG    2021-05-10 19:37:25,364 (dnnv.verifiers.common.executors.commandline) [STDERR]:attribute {
+DEBUG    2021-05-10 19:37:25,364 (dnnv.verifiers.common.executors.commandline) [STDERR]:name: "perm"
+DEBUG    2021-05-10 19:37:25,364 (dnnv.verifiers.common.executors.commandline) [STDERR]:ints: 0
+DEBUG    2021-05-10 19:37:25,364 (dnnv.verifiers.common.executors.commandline) [STDERR]:ints: 2
+DEBUG    2021-05-10 19:37:25,364 (dnnv.verifiers.common.executors.commandline) [STDERR]:ints: 3
+DEBUG    2021-05-10 19:37:25,364 (dnnv.verifiers.common.executors.commandline) [STDERR]:ints: 1
+DEBUG    2021-05-10 19:37:25,364 (dnnv.verifiers.common.executors.commandline) [STDERR]:type: INTS
+DEBUG    2021-05-10 19:37:25,364 (dnnv.verifiers.common.executors.commandline) [STDERR]:}
+DEBUG    2021-05-10 19:37:25,365 (dnnv.verifiers.common.executors.commandline) [STDERR]:
+DEBUG    2021-05-10 19:37:25,365 (dnnv.verifiers.common.executors.commandline) [STDERR]:INFO:src.data_loader.onnx_parser:Skipped node of type: Flatten
+DEBUG    2021-05-10 19:37:25,365 (dnnv.verifiers.common.executors.commandline) [STDERR]:INFO:gurobipy.gurobipy:Using license file /u/ft8bn/gurobi_license/cortado01/gurobi.lic
+DEBUG    2021-05-10 19:37:25,371 (dnnv.verifiers.common.executors.commandline) [STDOUT]:Academic license - for non-commercial use only
+DEBUG    2021-05-10 19:37:25,371 (dnnv.verifiers.common.executors.commandline) [STDERR]:INFO:gurobipy.gurobipy:Academic license - for non-commercial use only
+Traceback (most recent call last):
+  File "/bigtemp/ft8bn/DNNV/dnnv/verifiers/common/executors/commandline.py", line 34, in run
+    ready, _, _ = select.select([stream], [], [], 0)
+KeyboardInterrupt
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/net/bigtemp/ft8bn/DNNV/.venv/bin/dnnv", line 8, in <module>
+    sys.exit(_main())
+  File "/bigtemp/ft8bn/DNNV/dnnv/__main__.py", line 80, in _main
+    return exit(main(*cli.parse_args()))
+  File "/bigtemp/ft8bn/DNNV/dnnv/__main__.py", line 58, in main
+    result, cex = verifier.verify(phi, **params)
+  File "/bigtemp/ft8bn/DNNV/dnnv/verifiers/common/base.py", line 82, in verify
+    return cls(phi, **kwargs).run()
+  File "/bigtemp/ft8bn/DNNV/dnnv/verifiers/common/base.py", line 112, in run
+    subproperty_result, cex = self.check(subproperty)
+  File "/bigtemp/ft8bn/DNNV/dnnv/verifiers/common/base.py", line 88, in check
+    *executor_inputs, verifier_error=self.verifier_error
+  File "/bigtemp/ft8bn/DNNV/dnnv/verifiers/common/executors/commandline.py", line 34, in run
+    ready, _, _ = select.select([stream], [], [], 0)
+KeyboardInterrupt

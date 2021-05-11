@@ -1,0 +1,24 @@
+2021-05-10 15:28:05.426771: I tensorflow/core/platform/cpu_feature_guard.cc:142] Your CPU supports instructions that this TensorFlow binary was not compiled to use: AVX2 FMA
+2021-05-10 15:28:05.430640: I tensorflow/core/platform/profile_utils/cpu_utils.cc:94] CPU Frequency: 2599990000 Hz
+2021-05-10 15:28:05.431035: I tensorflow/compiler/xla/service/service.cc:168] XLA service 0x560cf9abb1c0 initialized for platform Host (this does not guarantee that XLA will be used). Devices:
+2021-05-10 15:28:05.431062: I tensorflow/compiler/xla/service/service.cc:176]   StreamExecutor device (0): Host, Default Version
+WARNING:tensorflow:From /Data/PhD/Frameworks/DNNV/.venv/lib/python3.7/site-packages/cleverhans/utils_tf.py:341: The name tf.GraphKeys is deprecated. Please use tf.compat.v1.GraphKeys instead.
+
+WARNING:tensorflow:From /Data/PhD/Frameworks/DNNV/.venv/lib/python3.7/site-packages/cleverhans/attacks/__init__.py:49: The name tf.Session is deprecated. Please use tf.compat.v1.Session instead.
+
+WARNING:tensorflow:From /Data/PhD/Frameworks/DNNV/.venv/lib/python3.7/site-packages/cleverhans/utils_tf.py:624: The name tf.assert_greater_equal is deprecated. Please use tf.compat.v1.assert_greater_equal instead.
+
+WARNING:tensorflow:From /Data/PhD/Frameworks/DNNV/.venv/lib/python3.7/site-packages/cleverhans/utils_tf.py:615: The name tf.assert_less_equal is deprecated. Please use tf.compat.v1.assert_less_equal instead.
+
+WARNING:tensorflow:From /Data/PhD/Frameworks/DNNV/.venv/lib/python3.7/site-packages/cleverhans/attacks/__init__.py:568: to_float (from tensorflow.python.ops.math_ops) is deprecated and will be removed in a future version.
+Instructions for updating:
+Use `tf.cast` instead.
+WARNING:tensorflow:From /Data/PhD/Frameworks/DNNV/.venv/lib/python3.7/site-packages/cleverhans/compat.py:124: calling softmax_cross_entropy_with_logits_v2_helper (from tensorflow.python.ops.nn_ops) with dim is deprecated and will be removed in a future version.
+Instructions for updating:
+dim is deprecated, use axis instead
+Falsifying: Forall(x_0, (((x_0 <= [[[0.067 0.063 ... 0.2  0.039] [0.047 0.024 ... 0.09 0.075] ... [0.443 0.443 ... 0.122 0.125] [0.459 0.455 ... 0.125 0.125]] [[0.008 0.004 ... 0.18 0.039] [0.031 0.008 ... 0.09 0.075] ... [0.463 0.463 ... 0.165 0.169] [0.459 0.455 ... 0.169 0.169]] [[0.004 0.004 ... 0.165 0.039] [0.055 0.031 ... 0.082 0.082] ... [0.486 0.486 ... 0.235 0.239] [0.49 0.486 ... 0.239 0.239]]]) & (x_0 <= 1) & (0 <= x_0) & ([[[0.067 0.063 ... 0.2  0.039] [0.047 0.024 ... 0.09 0.075] ... [0.443 0.443 ... 0.122 0.125] [0.459 0.455 ... 0.125 0.125]] [[0.008 0.004 ... 0.18 0.039] [0.031 0.008 ... 0.09 0.075] ... [0.463 0.463 ... 0.165 0.169] [0.459 0.455 ... 0.169 0.169]] [[0.004 0.004 ... 0.165 0.039] [0.055 0.031 ... 0.082 0.082] ... [0.486 0.486 ... 0.235 0.239] [0.49 0.486 ... 0.239 0.239]]] <= x_0)) ==> ((numpy.tan(max(-1.5707963267948966, ((N[0:]([[[[0.067 0.063 ... 0.2  0.039]  [0.047 0.024 ... 0.09 0.075]  ...  [0.443 0.443 ... 0.122 0.125]  [0.459 0.455 ... 0.125 0.125]] [[0.008 0.004 ... 0.18 0.039]  [0.031 0.008 ... 0.09 0.075]  ...  [0.463 0.463 ... 0.165 0.169]  [0.459 0.455 ... 0.169 0.169]] [[0.004 0.004 ... 0.165 0.039]  [0.055 0.031 ... 0.082 0.082]  ...  [0.486 0.486 ... 0.235 0.239]  [0.49 0.486 ... 0.239 0.239]]]]) - ((3.141592653589793 * 15.0) / 180)) / 2))) < N[0:-2](x_0)) & (N[0:-2](x_0) < numpy.tan(min(1.5707963267948966, ((N[0:]([[[[0.067 0.063 ... 0.2  0.039]  [0.047 0.024 ... 0.09 0.075]  ...  [0.443 0.443 ... 0.122 0.125]  [0.459 0.455 ... 0.125 0.125]] [[0.008 0.004 ... 0.18 0.039]  [0.031 0.008 ... 0.09 0.075]  ...  [0.463 0.463 ... 0.165 0.169]  [0.459 0.455 ... 0.169 0.169]] [[0.004 0.004 ... 0.165 0.039]  [0.055 0.031 ... 0.082 0.082]  ...  [0.486 0.486 ... 0.235 0.239]  [0.49 0.486 ... 0.239 0.239]]]]) + ((3.141592653589793 * 15.0) / 180)) / 2)))))))
+
+dnnf
+  result: sat
+  falsification time: 1.0605
+  total time: 7.3715

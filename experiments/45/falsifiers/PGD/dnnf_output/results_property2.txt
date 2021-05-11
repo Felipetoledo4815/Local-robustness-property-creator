@@ -1,0 +1,42 @@
+2021-05-11 08:51:35.650705: I tensorflow/core/platform/cpu_feature_guard.cc:142] Your CPU supports instructions that this TensorFlow binary was not compiled to use: AVX2 AVX512F FMA
+2021-05-11 08:51:35.667661: I tensorflow/core/platform/profile_utils/cpu_utils.cc:94] CPU Frequency: 2200000000 Hz
+2021-05-11 08:51:35.682419: I tensorflow/compiler/xla/service/service.cc:168] XLA service 0x55d59ef8aa00 initialized for platform Host (this does not guarantee that XLA will be used). Devices:
+2021-05-11 08:51:35.682477: I tensorflow/compiler/xla/service/service.cc:176]   StreamExecutor device (0): Host, Default Version
+WARNING:tensorflow:From /net/bigtemp/ft8bn/DNNV/.venv/lib/python3.7/site-packages/cleverhans/utils_tf.py:341: The name tf.GraphKeys is deprecated. Please use tf.compat.v1.GraphKeys instead.
+
+WARNING:tensorflow:From /net/bigtemp/ft8bn/DNNV/.venv/lib/python3.7/site-packages/cleverhans/attacks/__init__.py:49: The name tf.Session is deprecated. Please use tf.compat.v1.Session instead.
+
+WARNING:tensorflow:From /net/bigtemp/ft8bn/DNNV/.venv/lib/python3.7/site-packages/cleverhans/utils_tf.py:624: The name tf.assert_greater_equal is deprecated. Please use tf.compat.v1.assert_greater_equal instead.
+
+WARNING:tensorflow:From /net/bigtemp/ft8bn/DNNV/.venv/lib/python3.7/site-packages/cleverhans/utils_tf.py:615: The name tf.assert_less_equal is deprecated. Please use tf.compat.v1.assert_less_equal instead.
+
+WARNING:tensorflow:From /net/bigtemp/ft8bn/DNNV/.venv/lib/python3.7/site-packages/cleverhans/attacks/__init__.py:546: The name tf.random_uniform is deprecated. Please use tf.random.uniform instead.
+
+WARNING:tensorflow:From /net/bigtemp/ft8bn/DNNV/.venv/lib/python3.7/site-packages/cleverhans/attacks/__init__.py:568: to_float (from tensorflow.python.ops.math_ops) is deprecated and will be removed in a future version.
+Instructions for updating:
+Use `tf.cast` instead.
+WARNING:tensorflow:From /net/bigtemp/ft8bn/DNNV/.venv/lib/python3.7/site-packages/cleverhans/compat.py:124: calling softmax_cross_entropy_with_logits_v2_helper (from tensorflow.python.ops.nn_ops) with dim is deprecated and will be removed in a future version.
+Instructions for updating:
+dim is deprecated, use axis instead
+Falsifying: Forall(x_0, ((([[[0.224 0.188 ... 0.941 0.973] [0.122 0.157 ... 0.906 1.  ] ... [0.078 0.09 ... 0.086 0.094] [0.082 0.082 ... 0.086 0.086]] [[0.22 0.122 ... 0.831 0.867] [0.169 0.173 ... 0.906 0.98 ] ... [0.125 0.133 ... 0.129 0.137] [0.125 0.125 ... 0.129 0.129]] [[0.224 0.176 ... 0.757 0.761] [0.192 0.22 ... 0.878 0.922] ... [0.196 0.204 ... 0.2  0.208] [0.196 0.196 ... 0.2  0.2 ]]] <= x_0) & (x_0 <= [[[0.224 0.188 ... 0.941 0.973] [0.122 0.157 ... 0.906 1.  ] ... [0.078 0.09 ... 0.086 0.094] [0.082 0.082 ... 0.086 0.086]] [[0.22 0.122 ... 0.831 0.867] [0.169 0.173 ... 0.906 0.98 ] ... [0.125 0.133 ... 0.129 0.137] [0.125 0.125 ... 0.129 0.129]] [[0.224 0.176 ... 0.757 0.761] [0.192 0.22 ... 0.878 0.922] ... [0.196 0.204 ... 0.2  0.208] [0.196 0.196 ... 0.2  0.2 ]]])) ==> ((numpy.tan(max(-1.5707963267948966, ((N[0:]([[[[0.224 0.188 ... 0.941 0.973]  [0.122 0.157 ... 0.906 1.  ]  ...  [0.078 0.09 ... 0.086 0.094]  [0.082 0.082 ... 0.086 0.086]] [[0.22 0.122 ... 0.831 0.867]  [0.169 0.173 ... 0.906 0.98 ]  ...  [0.125 0.133 ... 0.129 0.137]  [0.125 0.125 ... 0.129 0.129]] [[0.224 0.176 ... 0.757 0.761]  [0.192 0.22 ... 0.878 0.922]  ...  [0.196 0.204 ... 0.2  0.208]  [0.196 0.196 ... 0.2  0.2 ]]]]) - ((3.141592653589793 * 45.0) / 180)) / 2))) < N[0:-2](x_0)) & (N[0:-2](x_0) < numpy.tan(min(1.5707963267948966, ((N[0:]([[[[0.224 0.188 ... 0.941 0.973]  [0.122 0.157 ... 0.906 1.  ]  ...  [0.078 0.09 ... 0.086 0.094]  [0.082 0.082 ... 0.086 0.086]] [[0.22 0.122 ... 0.831 0.867]  [0.169 0.173 ... 0.906 0.98 ]  ...  [0.125 0.133 ... 0.129 0.137]  [0.125 0.125 ... 0.129 0.129]] [[0.224 0.176 ... 0.757 0.761]  [0.192 0.22 ... 0.878 0.922]  ...  [0.196 0.204 ... 0.2  0.208]  [0.196 0.196 ... 0.2  0.2 ]]]]) + ((3.141592653589793 * 45.0) / 180)) / 2)))))))
+
+Traceback (most recent call last):
+  File "/net/bigtemp/ft8bn/DNNV/.venv/bin/dnnf", line 8, in <module>
+    sys.exit(__main__())
+  File "/net/bigtemp/ft8bn/DNNV/.venv/lib/python3.7/site-packages/dnnf/__main__.py", line 63, in __main__
+    main(**vars(args), extra_args=extra_args)
+  File "/net/bigtemp/ft8bn/DNNV/.venv/lib/python3.7/site-packages/dnnf/__main__.py", line 41, in main
+    result = falsify(phi, **kwargs)
+  File "/net/bigtemp/ft8bn/DNNV/.venv/lib/python3.7/site-packages/dnnf/falsifier.py", line 79, in falsify
+    counter_example = asyncio.run(wait_for_first(tasks, **kwargs))
+  File "/sw/centos/anaconda3/2019.10/lib/python3.7/asyncio/runners.py", line 43, in run
+    return loop.run_until_complete(main)
+  File "/sw/centos/anaconda3/2019.10/lib/python3.7/asyncio/base_events.py", line 566, in run_until_complete
+    self.run_forever()
+  File "/sw/centos/anaconda3/2019.10/lib/python3.7/asyncio/base_events.py", line 534, in run_forever
+    self._run_once()
+  File "/sw/centos/anaconda3/2019.10/lib/python3.7/asyncio/base_events.py", line 1735, in _run_once
+    event_list = self._selector.select(timeout)
+  File "/sw/centos/anaconda3/2019.10/lib/python3.7/selectors.py", line 468, in select
+    fd_event_list = self._selector.poll(timeout, max_ev)
+KeyboardInterrupt

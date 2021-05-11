@@ -16,7 +16,7 @@ gamma_ub = np.tan(min(np.pi / 2, (output + gamma) / 2))
 Forall(
     x_,
     Implies(
-        (0 <= x_ <= 1) & (lb < x_ < ub),
+        (lb <= x_ <= ub),
         (gamma_lb < N[input_layer:output_layer](x_) < gamma_ub),
     ),
 )

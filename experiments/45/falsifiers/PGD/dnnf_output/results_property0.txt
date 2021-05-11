@@ -1,0 +1,26 @@
+2021-05-11 08:21:19.177611: I tensorflow/core/platform/cpu_feature_guard.cc:142] Your CPU supports instructions that this TensorFlow binary was not compiled to use: AVX2 AVX512F FMA
+2021-05-11 08:21:19.214206: I tensorflow/core/platform/profile_utils/cpu_utils.cc:94] CPU Frequency: 2200000000 Hz
+2021-05-11 08:21:19.233703: I tensorflow/compiler/xla/service/service.cc:168] XLA service 0x563de8896ac0 initialized for platform Host (this does not guarantee that XLA will be used). Devices:
+2021-05-11 08:21:19.233755: I tensorflow/compiler/xla/service/service.cc:176]   StreamExecutor device (0): Host, Default Version
+WARNING:tensorflow:From /net/bigtemp/ft8bn/DNNV/.venv/lib/python3.7/site-packages/cleverhans/utils_tf.py:341: The name tf.GraphKeys is deprecated. Please use tf.compat.v1.GraphKeys instead.
+
+WARNING:tensorflow:From /net/bigtemp/ft8bn/DNNV/.venv/lib/python3.7/site-packages/cleverhans/attacks/__init__.py:49: The name tf.Session is deprecated. Please use tf.compat.v1.Session instead.
+
+WARNING:tensorflow:From /net/bigtemp/ft8bn/DNNV/.venv/lib/python3.7/site-packages/cleverhans/utils_tf.py:624: The name tf.assert_greater_equal is deprecated. Please use tf.compat.v1.assert_greater_equal instead.
+
+WARNING:tensorflow:From /net/bigtemp/ft8bn/DNNV/.venv/lib/python3.7/site-packages/cleverhans/utils_tf.py:615: The name tf.assert_less_equal is deprecated. Please use tf.compat.v1.assert_less_equal instead.
+
+WARNING:tensorflow:From /net/bigtemp/ft8bn/DNNV/.venv/lib/python3.7/site-packages/cleverhans/attacks/__init__.py:546: The name tf.random_uniform is deprecated. Please use tf.random.uniform instead.
+
+WARNING:tensorflow:From /net/bigtemp/ft8bn/DNNV/.venv/lib/python3.7/site-packages/cleverhans/attacks/__init__.py:568: to_float (from tensorflow.python.ops.math_ops) is deprecated and will be removed in a future version.
+Instructions for updating:
+Use `tf.cast` instead.
+WARNING:tensorflow:From /net/bigtemp/ft8bn/DNNV/.venv/lib/python3.7/site-packages/cleverhans/compat.py:124: calling softmax_cross_entropy_with_logits_v2_helper (from tensorflow.python.ops.nn_ops) with dim is deprecated and will be removed in a future version.
+Instructions for updating:
+dim is deprecated, use axis instead
+Falsifying: Forall(x_0, (((x_0 <= 1) & ([[[0.122 0.133 ... 0.169 0.2 ] [0.118 0.051 ... 0.192 0.192] ... [0.318 0.31 ... 0.404 0.98 ] [0.325 0.318 ... 0.365 0.341]] [[0.059 0.075 ... 0.169 0.196] [0.102 0.035 ... 0.192 0.18 ] ... [0.318 0.31 ... 0.38 0.941] [0.325 0.318 ... 0.345 0.314]] [[0.024 0.075 ... 0.129 0.176] [0.09 0.051 ... 0.161 0.161] ... [0.318 0.31 ... 0.396 0.941] [0.325 0.318 ... 0.361 0.341]]] <= x_0) & (x_0 <= [[[0.122 0.133 ... 0.169 0.2 ] [0.118 0.051 ... 0.192 0.192] ... [0.318 0.31 ... 0.404 0.98 ] [0.325 0.318 ... 0.365 0.341]] [[0.059 0.075 ... 0.169 0.196] [0.102 0.035 ... 0.192 0.18 ] ... [0.318 0.31 ... 0.38 0.941] [0.325 0.318 ... 0.345 0.314]] [[0.024 0.075 ... 0.129 0.176] [0.09 0.051 ... 0.161 0.161] ... [0.318 0.31 ... 0.396 0.941] [0.325 0.318 ... 0.361 0.341]]]) & (0 <= x_0)) ==> ((numpy.tan(max(-1.5707963267948966, ((N[0:]([[[[0.122 0.133 ... 0.169 0.2 ]  [0.118 0.051 ... 0.192 0.192]  ...  [0.318 0.31 ... 0.404 0.98 ]  [0.325 0.318 ... 0.365 0.341]] [[0.059 0.075 ... 0.169 0.196]  [0.102 0.035 ... 0.192 0.18 ]  ...  [0.318 0.31 ... 0.38 0.941]  [0.325 0.318 ... 0.345 0.314]] [[0.024 0.075 ... 0.129 0.176]  [0.09 0.051 ... 0.161 0.161]  ...  [0.318 0.31 ... 0.396 0.941]  [0.325 0.318 ... 0.361 0.341]]]]) - ((3.141592653589793 * 45.0) / 180)) / 2))) < N[0:-2](x_0)) & (N[0:-2](x_0) < numpy.tan(min(1.5707963267948966, ((N[0:]([[[[0.122 0.133 ... 0.169 0.2 ]  [0.118 0.051 ... 0.192 0.192]  ...  [0.318 0.31 ... 0.404 0.98 ]  [0.325 0.318 ... 0.365 0.341]] [[0.059 0.075 ... 0.169 0.196]  [0.102 0.035 ... 0.192 0.18 ]  ...  [0.318 0.31 ... 0.38 0.941]  [0.325 0.318 ... 0.345 0.314]] [[0.024 0.075 ... 0.129 0.176]  [0.09 0.051 ... 0.161 0.161]  ...  [0.318 0.31 ... 0.396 0.941]  [0.325 0.318 ... 0.361 0.341]]]]) + ((3.141592653589793 * 45.0) / 180)) / 2)))))))
+
+dnnf
+  result: sat
+  falsification time: 3.4445
+  total time: 10.0809
