@@ -81,7 +81,7 @@ def create_digit_image(imgNumber, results_path, filename, properties_path, dnn_p
             plt.imshow(image)
             plt.arrow(50, 99, arrow_x1, -arrow_y1, width = 0.5, head_width=3, head_length=3, color='black')
             plt.arrow(50, 99, arrow_x2, -arrow_y2, width = 0.5, head_width=3, head_length=3, color='red')
-            plt.savefig(results_path + "/images/image"+str(imgNumber)+".png")
+            plt.savefig(results_path + "/images/image"+str(imgNumber)+".png",bbox_inches='tight')
             return image
         else:
             result_file = open(results_path+"/dnnv_output/"+filename, "r")
