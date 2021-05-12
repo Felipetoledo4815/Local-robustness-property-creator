@@ -132,7 +132,7 @@ dmypy.json
 **/.DS_Store
 
 .vscode
-image_viewer.ipynb
+/image_viewer.ipynb
 /counter_examples/
 verify_s.sh
 falsify_s.sh
