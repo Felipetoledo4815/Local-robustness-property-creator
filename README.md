@@ -15,4 +15,6 @@ For this project, we did an experiment consisting in creating 10 properties with
 1. Execute `install.sh` script in order to install DNNV, DNNF and other python packages needed.
 2. The script above will create a python environment that will need to be active to carry out the experiments. To activate it, move to `DNNV` folder that will be created and execute `.env.d/openenv.sh`.
 3. To run the experiment with the verifiers (`Neurify` and `Verinet`), execute `verify.sh`.
-4. 3. To run the experiment with the falsifiers (`Basic Iterative Method (BIM)` and `Projected Gradient Descent (PGD)`), execute `falsify.sh`.
+4. To run the experiment with the falsifiers (`Basic Iterative Method (BIM)` and `Projected Gradient Descent (PGD)`), execute `falsify.sh`.
+5. After executing the experiments scripts mentioned above, a `experiment` folder will be created, inside of it, you will find two folders `15` and `45` representing the two different alpha values that we used for the experiments. Inside those folders there will be two more folders `falsifiers` and `verifiers` which will contain folders for the tools used. Lastly inside the tools folder, you will see a file called `result_summary.md` which contains the result of each property and an image of the counter-example in case the property was violated.
+6. To create the plots from our paper, you will need to open the `results.ipynb` notebook and run all the cells.
