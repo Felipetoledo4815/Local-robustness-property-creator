@@ -1,0 +1,3 @@
+[submodule "plate_detector/yolov5"]
+	path = plate_detector/yolov5
+	url = https://github.com/ultralytics/yolov5

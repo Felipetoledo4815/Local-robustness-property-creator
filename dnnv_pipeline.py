@@ -22,7 +22,7 @@ def execute_dnnv_properties(dnn_onnx_path, verifier_name, properties_path, resul
                     '--network', 'N', dnn_onnx_path, 
                     '--' + verifier_name.lower(),
                     '--save-violation', results_path + '/counter_examples/ce_' + property_name,
-                    '--prop.gamma', degrees],
+                    '--prop.gamma', degrees, '--debug'],
                 stdout=f, stderr=f, text=True)
 
 

@@ -134,6 +134,13 @@ dmypy.json
 .vscode
 /image_viewer.ipynb
 /counter_examples/
+/plate_detector/database
+/plate_detector/wandb
+/plate_detector/runs
+/plate_detector/yolov5s.pt
+/plate_detector/original_yolov5
+/plate_vae/
+# /plate_vae/database
 verify_s.sh
 falsify_s.sh
 batch_v.sh
