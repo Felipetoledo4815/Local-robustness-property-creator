@@ -136,7 +136,7 @@ dmypy.json
 /counter_examples/
 /plate_detector/database
 /plate_detector/wandb
-/plate_detector/runs
+/plate_detector/runs/detect/
 /plate_detector/yolov5s.pt
 /plate_detector/original_yolov5
 /plate_vae/
